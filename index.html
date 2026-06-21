@@ -7,19 +7,18 @@
 <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0;font-family:'Prompt',sans-serif;}
-body{background:#f0f2f5;min-height:100vh;}
-
-/* CSS เดิมของคุณทั้งหมดถูกรักษาไว้ */
-body { -webkit-user-select: none; -ms-user-select: none; user-select: none; }
+body{background:#f0f2f5;min-height:100vh;-webkit-user-select:none;-ms-user-select:none;user-select:none;}
 
 .top-bar{
   background:linear-gradient(135deg,#6c3fc4 0%,#4caf8a 100%);
-  padding:16px 32px;
+  padding:12px 24px;
   display:flex;align-items:center;justify-content:space-between;
   position:sticky;top:0;z-index:50;
   box-shadow:0 2px 12px rgba(108,63,196,.25);
 }
-.top-bar h1{color:#fff;font-size:24px;font-weight:600;letter-spacing:.3px;}
+.brand-wrapper{display:flex;align-items:center;gap:12px;}
+.nav-logo{height:40px;width:auto;}
+.top-bar h1{color:#fff;font-size:18px;font-weight:600;letter-spacing:.3px;}
 .admin-btn{
   background:rgba(255,255,255,.18);
   border:1.5px solid rgba(255,255,255,.45);
@@ -29,7 +28,9 @@ body { -webkit-user-select: none; -ms-user-select: none; user-select: none; }
   transition:.2s;display:flex;align-items:center;gap:6px;
 }
 .admin-btn:hover{background:rgba(255,255,255,.32);}
+
 .main{padding:28px 32px;max-width:1400px;margin:0 auto;}
+
 .admin-panel{background:#fff;border-radius:16px;margin-bottom:24px;box-shadow:0 4px 16px rgba(0,0,0,.08);overflow:hidden;display:none;}
 .admin-panel.show{display:block;}
 .admin-header{background:linear-gradient(135deg,#6c3fc4,#4caf8a);padding:14px 22px;display:flex;align-items:center;justify-content:space-between;}
@@ -50,6 +51,7 @@ body { -webkit-user-select: none; -ms-user-select: none; user-select: none; }
 .act-btn.del:hover{background:#fff5f5;}
 .add-new-btn{width:100%;background:#f7f4ff;color:#6c3fc4;border:2px dashed #c5b3e6;border-radius:12px;padding:13px;font-size:15px;font-family:'Prompt',sans-serif;cursor:pointer;margin-top:6px;transition:.2s;}
 .add-new-btn:hover{background:#ede8ff;}
+
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:18px;}
 .card{background:#fff;border-radius:16px;padding:28px 20px;text-align:center;box-shadow:0 2px 10px rgba(0,0,0,.07);transition:.25s;border:1.5px solid transparent;display:flex;flex-direction:column;align-items:center;}
 .card:hover{transform:translateY(-5px);box-shadow:0 12px 28px rgba(108,63,196,.15);border-color:#c5b3e6;}
@@ -59,8 +61,10 @@ body { -webkit-user-select: none; -ms-user-select: none; user-select: none; }
 .card p{color:#888;font-size:13px;line-height:1.7;flex:1;margin-bottom:16px;}
 .card a{display:inline-block;background:linear-gradient(135deg,#6c3fc4,#4caf8a);color:#fff;font-size:14px;padding:9px 26px;border-radius:24px;text-decoration:none;font-family:'Prompt',sans-serif;transition:.2s;}
 .card a:hover{opacity:.88;letter-spacing:.5px;}
+
 .skeleton{background:linear-gradient(90deg,#f0f0f0 25%,#e0e0e0 50%,#f0f0f0 75%);background-size:200% 100%;animation:shimmer 1.4s infinite;border-radius:12px;}
 @keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+
 .overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:200;align-items:center;justify-content:center;backdrop-filter:blur(4px);}
 .overlay.show{display:flex;}
 .modal-box{background:#fff;border-radius:20px;padding:32px;width:320px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.2);}
@@ -75,6 +79,7 @@ body { -webkit-user-select: none; -ms-user-select: none; user-select: none; }
 .btn-primary:hover{opacity:.88;}
 .btn-cancel{flex:1;background:#f5f5f5;color:#666;border:none;border-radius:10px;padding:11px;font-size:15px;font-family:'Prompt',sans-serif;cursor:pointer;}
 .btn-cancel:hover{background:#eee;}
+
 .edit-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:300;align-items:center;justify-content:center;backdrop-filter:blur(4px);}
 .edit-overlay.show{display:flex;}
 .edit-box{background:#fff;border-radius:20px;padding:28px;width:380px;max-height:90vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,.2);}
@@ -83,24 +88,19 @@ body { -webkit-user-select: none; -ms-user-select: none; user-select: none; }
 .edit-box input{width:100%;border:1.5px solid #e0e0e0;border-radius:10px;padding:10px 14px;font-size:14px;font-family:'Prompt',sans-serif;outline:none;margin-bottom:14px;transition:.2s;}
 .edit-box input:focus{border-color:#6c3fc4;box-shadow:0 0 0 3px rgba(108,63,196,.1);}
 .img-preview{width:64px;height:64px;border-radius:12px;background:#f5f5f5;object-fit:contain;margin:0 auto 14px;display:block;border:1px solid #eee;}
+
 .toast{position:fixed;bottom:24px;right:24px;z-index:999;background:#333;color:#fff;padding:12px 22px;border-radius:12px;font-size:14px;font-family:'Prompt',sans-serif;opacity:0;transition:.3s;pointer-events:none;}
 .toast.show{opacity:1;}
 
 @media(max-width:600px){
-  .top-bar{padding:14px 16px;}
-  .top-bar h1{font-size:16px;}
-  .main{padding:16px;}
-  .grid{grid-template-columns:1fr 1fr;gap:12px;}
-  .card{padding:18px 12px;}
-  .edit-box{width:calc(100vw - 32px);}
+  .top-bar{padding:10px 14px;}
+  .top-bar h1{font-size:13px;}
+  .nav-logo{height:30px;}
+  .main{padding:14px;}
+  .grid{grid-template-columns:1fr 1fr;gap:10px;}
+  .card{padding:16px 10px;}
+  .edit-box{width:calc(100vw - 24px);}
 }
-
-.top-bar { display: flex; justify-content: space-between; align-items: center; padding: 10px 20px; background-color: #ffffff; box-shadow: 0 2px 4px rgba(0,0,0,0.1); border-bottom: 1px solid #e0e0e0; }
-.brand-wrapper { display: flex; align-items: center; }
-.nav-logo { height: 40px; width: auto; margin-right: 15px; }
-.top-bar h1 { font-size: 1.2rem; margin: 0; color: #333; font-weight: 600; white-space: nowrap; }
-.admin-btn { display: flex; align-items: center; gap: 8px; padding: 8px 16px; background-color: #f0f0f0; border: 1px solid #ccc; border-radius: 4px; color: #555; cursor: pointer; transition: all 0.2s; }
-.admin-btn:hover { background-color: #e0e0e0; border-color: #bbb; }
 </style>
 </head>
 <body>
@@ -110,7 +110,6 @@ body { -webkit-user-select: none; -ms-user-select: none; user-select: none; }
     <img src="https://i.postimg.cc/FHGkmGKB/NOVASOL-1/logo.png" alt="NOVASOL Logo" class="nav-logo">
     <h1>ห้างหุ้นส่วนจำกัด โนวาโซล</h1>
   </div>
-  
   <button class="admin-btn" onclick="showPassModal()">
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
       <circle cx="12" cy="12" r="3"/>
@@ -133,12 +132,14 @@ body { -webkit-user-select: none; -ms-user-select: none; user-select: none; }
   </div>
 
   <div class="grid" id="cardGrid">
+    <!-- skeleton placeholders -->
     <div class="card"><div class="skeleton" style="width:80px;height:80px;border-radius:18px;margin:0 auto 14px;"></div><div class="skeleton" style="height:16px;border-radius:6px;margin-bottom:8px;"></div><div class="skeleton" style="height:12px;border-radius:6px;margin-bottom:6px;"></div><div class="skeleton" style="height:12px;border-radius:6px;width:70%;margin:0 auto 16px;"></div><div class="skeleton" style="height:38px;border-radius:24px;width:120px;margin:0 auto;"></div></div>
     <div class="card"><div class="skeleton" style="width:80px;height:80px;border-radius:18px;margin:0 auto 14px;"></div><div class="skeleton" style="height:16px;border-radius:6px;margin-bottom:8px;"></div><div class="skeleton" style="height:12px;border-radius:6px;margin-bottom:6px;"></div><div class="skeleton" style="height:12px;border-radius:6px;width:70%;margin:0 auto 16px;"></div><div class="skeleton" style="height:38px;border-radius:24px;width:120px;margin:0 auto;"></div></div>
     <div class="card"><div class="skeleton" style="width:80px;height:80px;border-radius:18px;margin:0 auto 14px;"></div><div class="skeleton" style="height:16px;border-radius:6px;margin-bottom:8px;"></div><div class="skeleton" style="height:12px;border-radius:6px;margin-bottom:6px;"></div><div class="skeleton" style="height:12px;border-radius:6px;width:70%;margin:0 auto 16px;"></div><div class="skeleton" style="height:38px;border-radius:24px;width:120px;margin:0 auto;"></div></div>
   </div>
 </div>
 
+<!-- Password Modal -->
 <div class="overlay" id="passOverlay">
   <div class="modal-box">
     <div class="lock-icon">🔐</div>
@@ -153,6 +154,7 @@ body { -webkit-user-select: none; -ms-user-select: none; user-select: none; }
   </div>
 </div>
 
+<!-- Edit/Add Modal -->
 <div class="edit-overlay" id="editOverlay">
   <div class="edit-box">
     <h2 id="editTitle">เพิ่มเมนูใหม่</h2>
@@ -167,7 +169,7 @@ body { -webkit-user-select: none; -ms-user-select: none; user-select: none; }
     <input type="text" id="fLink" placeholder="https://script.google.com/...">
     <p class="field-label">ข้อความบนปุ่ม</p>
     <input type="text" id="fBtn" placeholder="เช่น ดูข้อมูล / เข้าใช้งาน">
-    <div class="modal-actions">
+    <div class="modal-actions" style="margin-top:4px;">
       <button class="btn-primary" onclick="saveItem()">💾 บันทึก</button>
       <button class="btn-cancel" onclick="closeEditModal()">ยกเลิก</button>
     </div>
@@ -177,47 +179,64 @@ body { -webkit-user-select: none; -ms-user-select: none; user-select: none; }
 <div class="toast" id="toast"></div>
 
 <script>
+/* ================================================================
+   CONFIG — แก้ SCRIPT_URL เป็น Web App URL ที่ Deploy แล้วของคุณ
+   ================================================================ */
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxc5vL2KBc0zSd1qE4mwpby7Os4xMp1mHbhGeDK8tU5bWb0noTTyInQAPYEGWypFQSN/exec";
+
+/* ================================================================
+   STATE
+   ================================================================ */
 let items = [];
 let editIdx = -1;
 let isAdmin = false;
 let _adminPass = '';
 
-// 🚨 นำลิงก์ Web App URL ตัวใหม่ (จาก Gmail ส่วนตัวที่ Deploy เสร็จแล้ว) มาวางใส่ในช่องนี้ครับ
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxc5vL2KBc0zSd1qE4mwpby7Os4xMp1mHbhGeDK8tU5bWb0noTTyInQAPYEGWypFQSN/exec";
-
-// ฟังก์ชันดึงข้อมูลเมนูตอนเปิดหน้าเว็บครั้งแรก
-function loadInitialData() {
-  fetch(`${SCRIPT_URL}?action=getItems`)
-    .then(res => res.json())
-    .then(data => {
+/* ================================================================
+   INIT — โหลดเมนูทันทีที่หน้าเว็บพร้อม (ไม่ต้องใส่รหัสผ่าน)
+   ================================================================ */
+window.addEventListener('DOMContentLoaded', function() {
+  fetch(SCRIPT_URL + '?action=getItems')
+    .then(function(res) { return res.json(); })
+    .then(function(data) {
       items = data;
       renderCards();
     })
-    .catch(e => {
+    .catch(function(e) {
       showToast('เกิดข้อผิดพลาดในการโหลดข้อมูล: ' + e.message);
     });
-}
+});
 
-// เรียกทำงานโหลดข้อมูลทันทีเมื่อหน้าเว็บพร้อม
-window.addEventListener('DOMContentLoaded', loadInitialData);
-
-function renderCards(){
-  const grid = document.getElementById('cardGrid');
-  grid.innerHTML = items.map(function(it){
+/* ================================================================
+   RENDER CARDS
+   ================================================================ */
+function renderCards() {
+  var grid = document.getElementById('cardGrid');
+  if (items.length === 0) {
+    grid.innerHTML = '<p style="color:#aaa;padding:24px;grid-column:1/-1;text-align:center;">ไม่พบรายการเมนู</p>';
+    return;
+  }
+  grid.innerHTML = items.map(function(it) {
     return '<div class="card">'
-      + '<div class="icon-wrap"><img src="' + it.img + '" alt="" onerror="this.style.opacity=\'.3\'"></div>'
-      + '<h3>' + it.title + '</h3>'
-      + '<p>' + it.desc + '</p>'
-      + '<a href="' + it.link + '" target="_blank">' + it.btn + '</a>'
+      + '<div class="icon-wrap"><img src="' + esc(it.img) + '" alt="" onerror="this.style.opacity=\'.3\'"></div>'
+      + '<h3>' + esc(it.title) + '</h3>'
+      + '<p>' + esc(it.desc) + '</p>'
+      + '<a href="' + esc(it.link) + '" target="_blank" rel="noopener noreferrer">' + esc(it.btn) + '</a>'
       + '</div>';
   }).join('');
 }
 
-function renderAdmin(){
-  var html = items.map(function(it, i){
+/* ================================================================
+   RENDER ADMIN LIST
+   ================================================================ */
+function renderAdmin() {
+  var html = items.map(function(it, i) {
     return '<div class="admin-item">'
-      + '<img src="' + it.img + '" onerror="this.src=\'https://via.placeholder.com/40\'">'
-      + '<div class="info"><div class="name">' + it.title + '</div><div class="url">' + it.link + '</div></div>'
+      + '<img src="' + esc(it.img) + '" onerror="this.src=\'https://placehold.co/40\'">'
+      + '<div class="info">'
+      + '<div class="name">' + esc(it.title) + '</div>'
+      + '<div class="url">' + esc(it.link) + '</div>'
+      + '</div>'
       + '<div class="acts">'
       + '<button class="act-btn" onclick="editItem(' + i + ')">✏ แก้ไข</button>'
       + '<button class="act-btn del" onclick="delItem(' + i + ')">ลบ</button>'
@@ -227,25 +246,30 @@ function renderAdmin(){
   document.getElementById('adminList').innerHTML = html;
 }
 
-function showPassModal(){
+/* ================================================================
+   PASSWORD MODAL
+   ================================================================ */
+function showPassModal() {
   document.getElementById('passOverlay').classList.add('show');
   document.getElementById('passInput').value = '';
   document.getElementById('passErr').style.display = 'none';
-  setTimeout(function(){ document.getElementById('passInput').focus(); }, 100);
+  setTimeout(function() { document.getElementById('passInput').focus(); }, 100);
 }
-function closePassModal(){
+
+function closePassModal() {
   document.getElementById('passOverlay').classList.remove('show');
 }
 
-// ปรับแต่งการเช็กตรวจสอบรหัสผ่านผ่านการ Fetch API
-function checkPass(){
+/* ตรวจสอบรหัสผ่านผ่าน GET (หลีกเลี่ยงปัญหา CORS preflight ของ POST) */
+function checkPass() {
   var pass = document.getElementById('passInput').value;
+  if (!pass) return;
   document.getElementById('passErr').style.display = 'none';
-  
-  fetch(`${SCRIPT_URL}?action=verifyPassword&pass=${encodeURIComponent(pass)}`)
-    .then(res => res.json())
-    .then(result => {
-      if(result.success){
+
+  fetch(SCRIPT_URL + '?action=verifyPassword&pass=' + encodeURIComponent(pass))
+    .then(function(res) { return res.json(); })
+    .then(function(result) {
+      if (result.success) {
         _adminPass = pass;
         closePassModal();
         isAdmin = true;
@@ -254,66 +278,77 @@ function checkPass(){
       } else {
         document.getElementById('passErr').style.display = 'block';
         document.getElementById('passInput').value = '';
+        document.getElementById('passInput').focus();
       }
     })
-    .catch(err => {
+    .catch(function() {
       showToast('เกิดข้อผิดพลาดในการตรวจสอบรหัสผ่าน');
     });
 }
 
-function closeAdmin(){
+function closeAdmin() {
   document.getElementById('adminPanel').classList.remove('show');
   isAdmin = false;
 }
 
-function openAdd(){
+/* ================================================================
+   EDIT / ADD MODAL
+   ================================================================ */
+function openAdd() {
   editIdx = -1;
   document.getElementById('editTitle').textContent = 'เพิ่มเมนูใหม่';
-  ['fTitle','fDesc','fImg','fLink','fBtn'].forEach(function(id){
+  ['fTitle','fDesc','fImg','fLink','fBtn'].forEach(function(id) {
     document.getElementById(id).value = '';
   });
   document.getElementById('imgPreview').src = '';
   document.getElementById('editOverlay').classList.add('show');
 }
-function editItem(i){
+
+function editItem(i) {
   editIdx = i;
   var it = items[i];
   document.getElementById('editTitle').textContent = 'แก้ไขเมนู';
   document.getElementById('fTitle').value = it.title;
-  document.getElementById('fDesc').value = it.desc;
-  document.getElementById('fImg').value = it.img;
-  document.getElementById('fLink').value = it.link;
-  document.getElementById('fBtn').value = it.btn;
+  document.getElementById('fDesc').value  = it.desc;
+  document.getElementById('fImg').value   = it.img;
+  document.getElementById('fLink').value  = it.link;
+  document.getElementById('fBtn').value   = it.btn;
   document.getElementById('imgPreview').src = it.img;
   document.getElementById('editOverlay').classList.add('show');
 }
-function updatePreview(){
+
+function updatePreview() {
   document.getElementById('imgPreview').src = document.getElementById('fImg').value;
 }
-function closeEditModal(){
+
+function closeEditModal() {
   document.getElementById('editOverlay').classList.remove('show');
 }
-function saveItem(){
+
+function saveItem() {
   var obj = {
-    title: document.getElementById('fTitle').value,
-    desc:  document.getElementById('fDesc').value,
-    img:   document.getElementById('fImg').value,
-    link:  document.getElementById('fLink').value,
-    btn:   document.getElementById('fBtn').value
+    title: document.getElementById('fTitle').value.trim(),
+    desc:  document.getElementById('fDesc').value.trim(),
+    img:   document.getElementById('fImg').value.trim(),
+    link:  document.getElementById('fLink').value.trim(),
+    btn:   document.getElementById('fBtn').value.trim()
   };
-  if(!obj.title || !obj.link){ showToast('กรุณากรอกชื่อเมนูและลิงก์'); return; }
-  if(editIdx >= 0) items[editIdx] = obj; else items.push(obj);
+  if (!obj.title || !obj.link) { showToast('กรุณากรอกชื่อเมนูและลิงก์'); return; }
+  if (editIdx >= 0) items[editIdx] = obj; else items.push(obj);
   closeEditModal();
   saveToServer();
 }
-function delItem(i){
-  if(!confirm('ลบ "' + items[i].title + '" ?')) return;
+
+function delItem(i) {
+  if (!confirm('ลบ "' + items[i].title + '" ?')) return;
   items.splice(i, 1);
   saveToServer();
 }
 
-// ปรับปรุงการเซฟข้อมูลกลับไปยังหลังบ้านด้วยวิธี Fetch POST/GET
-function saveToServer(){
+/* ================================================================
+   SAVE TO SERVER (POST)
+   ================================================================ */
+function saveToServer() {
   fetch(SCRIPT_URL, {
     method: 'POST',
     body: JSON.stringify({
@@ -322,34 +357,48 @@ function saveToServer(){
       items: items
     })
   })
-  .then(res => res.json())
-  .then(result => {
-    if(result.success) {
+  .then(function(res) { return res.json(); })
+  .then(function(result) {
+    if (result.success) {
       showToast('บันทึกสำเร็จ ✓');
       renderCards();
       renderAdmin();
     } else {
-      showToast('บันทึกไม่สำเร็จ: ' + result.message);
+      showToast('บันทึกไม่สำเร็จ: ' + (result.message || ''));
     }
   })
-  .catch(e => {
+  .catch(function(e) {
     showToast('บันทึกไม่สำเร็จ: ' + e.message);
   });
 }
 
-function showToast(msg){
+/* ================================================================
+   HELPERS
+   ================================================================ */
+function esc(str) {
+  if (!str) return '';
+  return String(str)
+    .replace(/&/g,'&amp;')
+    .replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;');
+}
+
+function showToast(msg) {
   var t = document.getElementById('toast');
   t.textContent = msg;
   t.classList.add('show');
-  setTimeout(function(){ t.classList.remove('show'); }, 2800);
+  setTimeout(function() { t.classList.remove('show'); }, 2800);
 }
 
-// บล็อกปุ่มพื้นฐานป้องกันการคัดลอกเบื้องต้น
-document.addEventListener('contextmenu', event => event.preventDefault());
+/* ================================================================
+   BLOCK INSPECT / VIEW SOURCE (ป้องกันการดูโค้ดเบื้องต้น)
+   ================================================================ */
+document.addEventListener('contextmenu', function(e) { e.preventDefault(); });
 document.onkeydown = function(e) {
-  if (e.keyCode == 123) return false;
-  if (e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) return false;
-  if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) return false;
+  if (e.keyCode === 123) return false;
+  if (e.ctrlKey && e.shiftKey && e.keyCode === 73) return false;
+  if (e.ctrlKey && e.keyCode === 85) return false;
 };
 </script>
 </body>
